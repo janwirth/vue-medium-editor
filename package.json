@@ -2,7 +2,7 @@
   "name": "vue-medium-editor",
   "version": "1.0.0",
   "description": "A VueJS directive for vue-medium-editor",
-  "main": "index.js",
+  "main": "medium-editor.litcoffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/FranzSkuffka/vue-medium-editor/issues"
   },
-  "homepage": "https://github.com/FranzSkuffka/vue-medium-editor#readme"
+  "homepage": "https://github.com/FranzSkuffka/vue-medium-editor#readme",
+  "dependencies": {
+    "medium-editor": "^5.22.1"
+  }
 }
