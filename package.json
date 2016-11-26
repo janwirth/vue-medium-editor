@@ -1,6 +1,6 @@
 {
   "name": "vue2-medium-editor",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "A VueJS directive for vue-medium-editor",
   "main": "medium-editor.js",
   "scripts": {
