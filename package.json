@@ -1,0 +1,29 @@
+{
+  "name": "vue2-medium-editor",
+  "version": "0.0.8",
+  "description": "A VueJS directive for vue-medium-editor",
+  "main": "medium-editor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranzSkuffka/vue-medium-editor.git"
+  },
+  "keywords": [
+    "vue",
+    "js",
+    "medium",
+    "editor",
+    "directive"
+  ],
+  "author": "Jan Wirth <contact@jan-wirth.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FranzSkuffka/vue-medium-editor/issues"
+  },
+  "homepage": "https://github.com/FranzSkuffka/vue-medium-editor#readme",
+  "dependencies": {
+    "medium-editor": "^5.22.1"
+  }
+}
