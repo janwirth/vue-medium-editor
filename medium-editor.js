@@ -12,7 +12,7 @@ function replaceElementWith (element, tagName) {
 export default {
   name: 'medium-editor',
   props: ['text', 'customTag'],
-  template: '<div ref="element" > {{ text }} </div>',
+  template: '<div ref="element" v-html="text"> </div>',
 
   mounted (evt) {
 // replace default div with custom tag if wanted
