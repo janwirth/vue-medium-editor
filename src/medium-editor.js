@@ -11,7 +11,7 @@ function replaceElementWith (element, tagName) {
 
 export default {
   name: 'medium-editor',
-  props: ['text', 'customTag'],
+  props: ['text', 'options', 'customTag'],
   template: '<div ref="element" v-html="text"> </div>',
 
   mounted (evt) {
@@ -24,7 +24,8 @@ export default {
 
 // if Medium Editor is not instantiated yet, create a new instance
     if (!this.$root.mediumEditor) {
-      this.$root.mediumEditor = new MediumEditor(this.$refs.element)
+      console.log(this.options)
+      this.$root.mediumEditor = new MediumEditor(this.$refs.element, this.options || {})
 
 // otherwise, just add the element
     } else {
