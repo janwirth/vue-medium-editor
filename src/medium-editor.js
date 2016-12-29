@@ -21,16 +21,13 @@ export default {
       this.$refs.element.innerHTML = this.text
     }
 
-
 // if Medium Editor is not instantiated yet, create a new instance
-    if (!this.$root.mediumEditor) {
-      console.log(this.options)
-      this.$root.mediumEditor = new MediumEditor(this.$refs.element, this.options || {})
-
+// if (!this.$root.mediumEditor) {
+    this.$root.mediumEditor = new MediumEditor(this.$refs.element, this.options || {})
 // otherwise, just add the element
-    } else {
-      this.$root.mediumEditor.addElements(this.$refs.element)
-    }
+// } else {
+//   // this.$root.mediumEditor.addElements(this.$refs.element, this.options || {})
+// }
 
 
 // bind edit operations to model
