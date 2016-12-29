@@ -2,7 +2,7 @@
   "name": "vue2-medium-editor",
   "version": "1.0.0",
   "description": "A VueJS directive for vue-medium-editor",
-  "main": "medium-editor.js",
+  "main": "lib/medium-editor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
