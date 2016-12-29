@@ -28,6 +28,10 @@
   "dependencies": {
     "medium-editor": "^5.22.1"
   },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.0.0"
+  },
   "browserify": {
     "transform": [
       "babelify"
