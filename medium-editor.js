@@ -1,13 +1,6 @@
 import MediumEditor from 'medium-editor'
 
-// impure helper function, replaces some element from the dom with a new one of the given tag name
-// returns the new one.
 
-function replaceElementWith (element, tagName) {
-  let newElement = document.createElement(tagName)
-  element.parentNode.replaceChild(newElement, element)
-  return newElement
-}
 
 export default {
   name: 'medium-editor',
@@ -17,7 +10,7 @@ export default {
   mounted (evt) {
 // replace default div with custom tag if wanted
     if (this.customTag) {
-      this.$refs.element = replaceElementWith(this.$refs.element, this.customTag)
+      this.$refs.element = this.replaceElementWith(this.$refs.element, this.customTag)
       this.$refs.element.innerHTML = this.text
     }
 
@@ -44,4 +37,13 @@ export default {
     this.$root.mediumEditor.removeElements(this.$refs.element)
   }
 
+  methods: {
+
+	// impure helper function, replaces some element from the dom with a new one of the given tag name
+	// returns the new one.
+	function replaceElementWith (element, tagName) {
+	  let newElement = document.createElement(tagName)
+	  element.parentNode.replaceChild(newElement, element)
+	  return newElement
+	}
 }
