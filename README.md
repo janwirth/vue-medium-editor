@@ -26,6 +26,3 @@ new Vue {
 ```
 
 Make sure you include the required [CSS](https://github.com/yabwe/medium-editor/tree/master/dist/css).
-
-## Roadmap
-- Create plugin for configuring options
