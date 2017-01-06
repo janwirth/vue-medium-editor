@@ -22,7 +22,10 @@ new Vue {
 }
 
 # index.html
-<medium-editor :text='myText' custom-tag='h2' v-on:edit='applyTextEdit'>
+<medium-editor :text='myText' :options='{ disableReturn: false }' custom-tag='h2' v-on:edit='applyTextEdit'>
 ```
+
+You can pass all options available from here:
+https://github.com/yabwe/medium-editor/blob/master/OPTIONS.md
 
 Make sure you include the required [CSS](https://github.com/yabwe/medium-editor/tree/master/dist/css).
