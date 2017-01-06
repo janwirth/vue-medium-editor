@@ -1,6 +1,6 @@
 {
-  "name": "vue2-medium-editor",
-  "version": "1.0.0",
+  "name": "vue-2-medium-editor",
+  "version": "1.0.1",
   "description": "A VueJS directive for vue-medium-editor",
   "main": "lib/medium-editor.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FranzSkuffka/vue-medium-editor.git"
+    "url": "git+https://github.com/schmidigital/vue-medium-editor.git"
   },
   "keywords": [
     "vue",
