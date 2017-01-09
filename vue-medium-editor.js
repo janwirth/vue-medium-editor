@@ -21,7 +21,6 @@ export default {
       this.$refs.element.innerHTML = this.text
     }
 
-
 // if Medium Editor is not instantiated yet, create a new instance
     if (!this.$root.mediumEditor) {
       this.$root.mediumEditor = new MediumEditor(this.$refs.element)
@@ -31,13 +30,12 @@ export default {
       this.$root.mediumEditor.addElements(this.$refs.element)
     }
 
-
 // bind edit operations to model
     this.$refs.element.addEventListener('DOMSubtreeModified', () => {
-      if (this.$refs.element.childNodes[0])
+      if (this.$refs.element.childNodes[0]) {
         this.$emit('edit', this.$refs.element.innerHTML)
-      })
-
+      }
+    })
   },
 
   beforeDestroy (evt) {
