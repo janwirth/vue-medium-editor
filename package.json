@@ -1,10 +1,14 @@
 {
   "name": "vue2-medium-editor",
-  "version": "1.0.0",
-  "description": "A VueJS directive for vue-medium-editor",
+  "version": "1.0.1",
+  "description": "A VueJS plugin for medium-editor",
   "main": "medium-editor.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist",
+    "build": "./node_modules/browserify/bin/cmd.js ./entry.js -t [ babelify --presets [ es2015 ] ] -o dist/vue-medium-editor.js",
+    "min": "./node_modules/uglify-js/bin/uglifyjs dist/vue-medium-editor.js > dist/vue-medium-editor.min.js",
+    "dist": "npm run clean; mkdir dist; npm run build; npm run min"
   },
   "repository": {
     "type": "git",
@@ -26,9 +30,10 @@
   "dependencies": {
     "medium-editor": "^5.22.1"
   },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.3.0",
+    "uglify-js": "^2.7.5"
   }
 }
