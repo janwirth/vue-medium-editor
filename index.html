@@ -1,0 +1,186 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>VueMediumEditor</title>
+    <meta name="description" content="Medium.com WYSIWYG editor clone. Uses contenteditable API to implement a rich text solution.">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css">
+    <link rel="stylesheet" href="https://yabwe.github.io/medium-editor/screen.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.22.1/css/medium-editor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.22.1/css/themes/flat.css">
+    <style>
+      body {
+      }
+      .medium-editor-element {
+        outline: none;
+      }
+
+      a,
+      a:hover,
+      section.splash h1 span,
+      .medium-editor-toolbar li button,
+      .color-1,
+      .color-2 {
+        color: #4fc08d
+      }
+
+
+      body,
+      pre,
+      .medium-editor-button-active b,
+      code {
+        color: #2c3e50;
+      }
+
+
+      .medium-editor-button-active.medium-editor-button-active.medium-editor-button-active {
+        background-color: #4fc08d
+      }
+
+      pre,
+      code {
+        background: #f8f8f8;
+        width: 80vw;
+      }
+
+      pre#cdn,
+      code.data,
+      pre#usage {
+        max-width: 900px
+      }
+
+      code.data {
+        margin-top: 50px
+      }
+
+      .medium-toolbar-arrow-over:before {
+        border-color: transparent transparent #2c3e50 transparent;
+      }
+
+      .medium-editor-toolbar li button {
+          border-right: 1px solid #2c3e50 ;
+      }
+
+      section.installation,
+      .medium-editor-toolbar,
+      .medium-editor-toolbar-anchor-preview,
+      .github-fork-ribbon {
+        background: #2c3e50
+      }
+
+      .medium-toolbar-arrow-under:after {
+        border-color: #2c3e50 transparent transparent transparent;
+      }
+
+      #toolbar-placeholder {
+        display: none;
+      }
+
+      .medium-editor-toolbar {
+        transitin: none
+      }
+    </style>
+  </head>
+  <body>
+    <div id='app'>
+
+
+
+      <div class="github-fork-ribbon-wrapper right"><div class="github-fork-ribbon"><a href="https://github.com/FranzSkuffka/vue-medium-editor" target='_blank'>Fork me on GitHub</a></div></div>
+
+
+      <section class="splash">
+        <div class="content animated fadeIn">
+          <h1><span>Vue</span>Medium<span>Editor</span></h1>
+          <div id="toolbar-placeholder" class="toolbar-placeholder" style="height: 74.4px;">
+          </div>
+          <medium-editor :text='text' v-on:edit='applyTextEdit' custom-tag='div' >
+          </medium-editor>
+          <code class='data'>
+            {{text}}
+          </code>
+        </div>
+      </section>
+
+
+      <section class="installation">
+        <div>
+          <h2>Installation</h2>
+
+          <div class="install-type npm">
+            <h3>Via npm</h3>
+            <div class="install-wrapper"><code id="npm">npm install vue2-medium-editor</code></div>
+          </div>
+
+          <div class="install-type cdn">
+            <h3>CDN / jsdelivr / rawGit</h3>
+            <div class="install-wrapper">
+              
+              <pre id="cdn">
+//cdn.rawgit.com/FranzSkuffka/vue-medium-editor/master/dist/vue-medium-editor.min.js"
+//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css"</div>
+          </div>
+
+          <div class="install-type usage">
+            <h3>Usage</h3>
+            <div class="install-wrapper">
+              
+              <pre id="usage">{{usage}}</pre>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+    </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.js" ></script>
+
+  <script src="https://cdn.rawgit.com/FranzSkuffka/vue-medium-editor/master/dist/vue-medium-editor.min.js" ></script>
+
+  <script>
+    var text =
+          '<p>A Vue 2 component for the the dead simple inline editor toolbar by <a href="https://yabwe.github.io/medium-editor/" target="_blank">yabwe</a>.</p>' +
+          '<p><span class="highlight animated shake">Try highlighting this text.</span></p>'
+
+
+    var usage =
+      "<medium-editor :text='text' v-on:edit='applyTextEdit' custom-tag='div' >\n\n" +
+      "</medium-editor>"                                                             +
+      "new Vue({\n"                                                                  +
+      "  el: '#app',\n"                                                              +
+      "  data: {\n"                                                                  +
+      "    text: text\n"                                                             +
+      "  },\n"                                                                       +
+      "  components: {\n"                                                            +
+      "    'medium-editor': VueMediumEditor\n"                                       +
+      "  },\n"                                                                       +
+      "  methods: {\n"                                                               +
+      "    applyTextEdit: function (text) {\n"                                       +
+      "      this.text = text\n"                                                     +
+      "    }\n"                                                                      +
+      "  }\n"                                                                        +
+      "});"
+
+    new Vue({
+      el: '#app',
+      data: {
+        text: text,
+        usage: usage
+      },
+      components: {
+        'medium-editor': VueMediumEditor
+      },
+      methods: {
+        applyTextEdit: function (text) {
+          this.text = text
+        }
+      }
+    });
+
+  </script>
+  </body>
+</html>
