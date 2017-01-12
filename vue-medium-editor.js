@@ -15,11 +15,9 @@ export default {
   template: '<div ref="element" v-html="text"> </div>',
 
   mounted (evt) {
-// replace default div with custom tag if wanted
-    if (this.customTag) {
-      this.$refs.element = replaceElementWith(this.$refs.element, this.customTag)
-      this.$refs.element.innerHTML = this.text
-    }
+// Use custom tag or div as editor element.
+    this.$refs.element = replaceElementWith(this.$refs.element, this.customTag || 'div')
+    this.$refs.element.innerHTML = this.text
 
 // if Medium Editor is not instantiated yet, create a new instance
     if (!this.$root.mediumEditor) {
