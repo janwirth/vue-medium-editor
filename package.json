@@ -2,7 +2,7 @@
   "name": "vue2-medium-editor",
   "version": "1.0.2",
   "description": "A VueJS plugin for medium-editor",
-  "main": "medium-editor.js",
+  "main": "vue-medium-editor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist",
