@@ -8052,7 +8052,16 @@ function replaceElementWith(element, tagName) {
 
 exports.default = {
   name: 'medium-editor',
-  props: ['text', 'customTag'],
+  props: {
+    text: [String],
+    customTag: [String],
+    options: {
+      type: [Object],
+      default: function _default() {
+        return {};
+      }
+    }
+  },
   template: '<div ref="element" v-html="text"> </div>',
 
   mounted: function mounted(evt) {
@@ -8064,7 +8073,7 @@ exports.default = {
 
     // if Medium Editor is not instantiated yet, create a new instance
     if (!this.$root.mediumEditor) {
-      this.$root.mediumEditor = new _mediumEditor2.default(this.$refs.element);
+      this.$root.mediumEditor = new _mediumEditor2.default(this.$refs.element, this.options);
 
       // otherwise, just add the element
     } else {
