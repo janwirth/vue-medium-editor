@@ -97,7 +97,7 @@
           <h1><span>Vue</span>Medium<span>Editor</span></h1>
           <div id="toolbar-placeholder" class="toolbar-placeholder" style="height: 74.4px;">
           </div>
-          <medium-editor :text='text' v-on:edit='applyTextEdit' custom-tag='div' >
+          <medium-editor :text='text' :options='options' v-on:edit='applyTextEdit' custom-tag='div'>
           </medium-editor>
           <code class='data'>
             {{text}}
@@ -148,28 +148,33 @@
 
 
     var usage =
-      "<medium-editor :text='text' v-on:edit='applyTextEdit' custom-tag='div' >\n\n" +
-      "</medium-editor>"                                                             +
-      "new Vue({\n"                                                                  +
-      "  el: '#app',\n"                                                              +
-      "  data: {\n"                                                                  +
-      "    text: text\n"                                                             +
-      "  },\n"                                                                       +
-      "  components: {\n"                                                            +
-      "    'medium-editor': VueMediumEditor\n"                                       +
-      "  },\n"                                                                       +
-      "  methods: {\n"                                                               +
-      "    applyTextEdit: function (text) {\n"                                       +
-      "      this.text = text\n"                                                     +
-      "    }\n"                                                                      +
-      "  }\n"                                                                        +
+      "<medium-editor :text='text' :options='options' v-on:edit='applyTextEdit' custom-tag='div'>\n" +
+      "</medium-editor>\n\n"                                                                         +
+      "new Vue({\n"                                                                                  +
+      "  el: '#app',\n"                                                                              +
+      "  data: {\n"                                                                                  +
+      "    text: text\n"                                                                             +
+      "  },\n"                                                                                       +
+      "  components: {\n"                                                                            +
+      "    'medium-editor': VueMediumEditor\n"                                                       +
+      "  },\n"                                                                                       +
+      "  methods: {\n"                                                                               +
+      "    applyTextEdit: function (text) {\n"                                                       +
+      "      this.text = text\n"                                                                     +
+      "    }\n"                                                                                      +
+      "  }\n"                                                                                        +
       "});"
+
+    options = {
+      toolbar: {buttons: ['bold', 'strikethrough', 'h1']}
+    }
 
     new Vue({
       el: '#app',
       data: {
         text: text,
-        usage: usage
+        usage: usage,
+        options: options
       },
       components: {
         'medium-editor': VueMediumEditor
