@@ -47,6 +47,16 @@ export default {
 
   beforeDestroy (evt) {
     this.$root.mediumEditor.removeElements(this.$refs.element)
-  }
+  },
 
+  watch: {
+    text() {
+      if (this.text === this.$refs.element.innerHTML) {
+        // if the change is done by this same component, do not update the contents to prevent
+        // caret from resetting to the beginning of the editor
+        return;
+      }
+      this.$refs.element.innerHTML = this.text
+    }
+  }
 }
