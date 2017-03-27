@@ -25,6 +25,20 @@ new Vue {
 <medium-editor :text='myText' :options='options' custom-tag='h2' v-on:edit='applyTextEdit'>
 ```
 
+### Reusing the MediumEditor instance
+
+By default the component will reuse a single MediumEditor instance within the same instance of Vue.
+
+The configuration options for the editor are then set by the first component instance and shared across any subsequent instances.
+
+If you need to have multiple instances of the editor with different configuration options, you can use the `reuse-medium-editor-instance` prop:
+
+```
+# index.html
+<medium-editor :text='myText' :options='options' :reuse-medium-editor-instance="false">
+<medium-editor :text='myOtherText' :options='differentOptions' :reuse-medium-editor-instance="false">
+```
+
 > Full usage example at [github.com/FranzSkuffka/vue-medium-editor/tree/gh-pages](https://github.com/FranzSkuffka/vue-medium-editor/tree/gh-pages)
 
 A list of available options can be found in the [documentation of MediumEditor](https://github.com/yabwe/medium-editor#core-options).
