@@ -19,25 +19,42 @@ export default {
       default: function () {
         return {}
       }
+    },
+    reuseMediumEditorInstance: {
+      type: [Boolean],
+      default: function () {
+        return true
+      }
+    }
+  },
+  data: function () {
+    return {
+      editor: null
     }
   },
   template: '<div ref="element" v-html="text"> </div>',
 
   mounted (evt) {
-// Use custom tag or div as editor element.
+    // Use custom tag or div as editor element.
     this.$refs.element = replaceElementWith(this.$refs.element, this.customTag || 'div')
     this.$refs.element.innerHTML = this.text
 
-// if Medium Editor is not instantiated yet, create a new instance
-    if (!this.$root.mediumEditor) {
-      this.$root.mediumEditor = new MediumEditor(this.$refs.element, this.options)
+    // If we want to reuse a single MediumEditor instance.
+    if (this.reuseMediumEditorInstance) {
+      // if Medium Editor is not instantiated yet, create a new instance
+      if (!this.$root.mediumEditor) {
+        this.$root.mediumEditor = new MediumEditor(this.$refs.element, this.options)
 
-// otherwise, just add the element
+      // otherwise, just add the element
+      } else {
+        this.$root.mediumEditor.addElements(this.$refs.element)
+      }
+    // Otherwise create a new instance of MediumEditor to use.
     } else {
-      this.$root.mediumEditor.addElements(this.$refs.element)
+      this.editor = new MediumEditor(this.$refs.element, this.options)
     }
 
-// bind edit operations to model
+    // bind edit operations to model
     this.$refs.element.addEventListener('DOMSubtreeModified', () => {
       if (this.$refs.element.childNodes[0]) {
         this.$emit('edit', this.$refs.element.innerHTML)
@@ -46,7 +63,14 @@ export default {
   },
 
   beforeDestroy (evt) {
-    this.$root.mediumEditor.removeElements(this.$refs.element)
+    // Only try to remove our element from a shared MediumEditor instance if
+    // we are using the shared instance.
+    if (this.reuseMediumEditorInstance) {
+      this.$root.mediumEditor.removeElements(this.$refs.element)
+    } else {
+      this.editor.destroy()
+      this.$refs.element.parentNode.removeChild(this.$refs.element)
+    }
   },
 
   watch: {
