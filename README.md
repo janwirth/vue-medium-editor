@@ -55,5 +55,9 @@ npm run build
 ```
 
 ## Contributors
+This project is made possible thanks to:
 - [franzskuffka](https://github.com/FranzSkuffka)
 - [gcoda](https://github.com/gcoda)
+- [seguer](https://github.com/seguer)
+- Anyone else who opened an Issue or PR!
+Thank you!
