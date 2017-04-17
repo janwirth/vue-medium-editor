@@ -3,14 +3,16 @@ A [medium-editor](https://github.com/yabwe/medium-editor) component for Vue2. Fo
 
 [![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
-## Installation & usage
+## Installation
 
-```
-# bash
+```bash
+#bash
 npm i --save vue2-medium-editor
+```
 
-
-# app.js
+## Usage
+```javascript
+//app.js
 import editor from 'vue2-medium-editor'
 import Vue from 'vue'
 
@@ -20,8 +22,9 @@ new Vue {
     'medium-editor': editor
   }
 }
-
-# index.html
+```
+```vue
+<!-- index.html -->
 <medium-editor :text='myText' :options='options' custom-tag='h2' v-on:edit='applyTextEdit'>
 ```
 
@@ -33,8 +36,8 @@ The configuration options for the editor are then set by the first component ins
 
 If you need to have multiple instances of the editor with different configuration options, you can use the `reuse-medium-editor-instance` prop:
 
-```
-# index.html
+```vue
+<!-- index.html -->
 <medium-editor :text='myText' :options='options' :reuse-medium-editor-instance="false">
 <medium-editor :text='myOtherText' :options='differentOptions' :reuse-medium-editor-instance="false">
 ```
@@ -49,7 +52,7 @@ Make sure you include the required [CSS](https://github.com/yabwe/medium-editor/
 ## Bundling & Minification
 
 To generate the standalone bundle
-```
+```bash
 npm i --save-dev
 npm run build
 ```
@@ -59,5 +62,6 @@ This project is made possible thanks to:
 - [franzskuffka](https://github.com/FranzSkuffka)
 - [gcoda](https://github.com/gcoda)
 - [seguer](https://github.com/seguer)
+- [DannyFeliz](https://github.com/DannyFeliz)
 - Anyone else who opened an Issue or PR!
 Thank you!
