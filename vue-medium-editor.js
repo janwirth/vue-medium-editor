@@ -82,5 +82,7 @@ export default {
       }
       this.$refs.element.innerHTML = this.text
     }
-  }
+  },
+
+  MediumEditor
 }
