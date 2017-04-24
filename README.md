@@ -70,11 +70,19 @@ npm i --save-dev
 npm run build
 ```
 
+### Note on uglify
+[Uglify does not support ES6 Harmony](https://github.com/mishoo/UglifyJS2/issues/448).
+As VueMediumEditor uses some ES6 features,
+**we recommend using [babili](https://github.com/babel/babili) instead of uglify**.
+
 ## Contributors
 This project is made possible thanks to:
 - [franzskuffka](https://github.com/FranzSkuffka)
 - [gcoda](https://github.com/gcoda)
 - [seguer](https://github.com/seguer)
 - [DannyFeliz](https://github.com/DannyFeliz)
-- Anyone else who opened an Issue or PR!
-Thank you!
+- [okneloper](https://github.com/okneloper)
+
+Anyone else who opened an Issue or PR!
+
+**Thank you!** :tada:
