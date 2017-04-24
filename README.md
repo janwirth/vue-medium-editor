@@ -49,6 +49,19 @@ Optionally you may use the standalone builds from `dist` which have medium-edito
 
 Make sure you include the required [CSS](https://github.com/yabwe/medium-editor/tree/master/dist/css).
 
+### Custom buttons and extensions
+To create extensions for the MediumEditor you will need the original MediumEditor object, which
+you can get like this:
+
+```javascript
+var HighlightButton = VueMediumEditor.MediumEditor.Extension.extend({
+    // ...
+});
+```
+
+See [Extensions](https://github.com/yabwe/medium-editor/tree/master/src/js/extensions)
+section of the MediumEditor's wiki for details.
+
 ## Bundling & Minification
 
 To generate the standalone bundle
