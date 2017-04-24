@@ -8060,7 +8060,18 @@ exports.default = {
       default: function _default() {
         return {};
       }
+    },
+    reuseMediumEditorInstance: {
+      type: [Boolean],
+      default: function _default() {
+        return true;
+      }
     }
+  },
+  data: function data() {
+    return {
+      editor: null
+    };
   },
   template: '<div ref="element" v-html="text"> </div>',
 
@@ -8071,13 +8082,19 @@ exports.default = {
     this.$refs.element = replaceElementWith(this.$refs.element, this.customTag || 'div');
     this.$refs.element.innerHTML = this.text;
 
-    // if Medium Editor is not instantiated yet, create a new instance
-    if (!this.$root.mediumEditor) {
-      this.$root.mediumEditor = new _mediumEditor2.default(this.$refs.element, this.options);
+    // If we want to reuse a single MediumEditor instance.
+    if (this.reuseMediumEditorInstance) {
+      // if Medium Editor is not instantiated yet, create a new instance
+      if (!this.$root.mediumEditor) {
+        this.$root.mediumEditor = new _mediumEditor2.default(this.$refs.element, this.options);
 
-      // otherwise, just add the element
+        // otherwise, just add the element
+      } else {
+        this.$root.mediumEditor.addElements(this.$refs.element);
+      }
+      // Otherwise create a new instance of MediumEditor to use.
     } else {
-      this.$root.mediumEditor.addElements(this.$refs.element);
+      this.editor = new _mediumEditor2.default(this.$refs.element, this.options);
     }
 
     // bind edit operations to model
@@ -8088,8 +8105,29 @@ exports.default = {
     });
   },
   beforeDestroy: function beforeDestroy(evt) {
-    this.$root.mediumEditor.removeElements(this.$refs.element);
-  }
+    // Only try to remove our element from a shared MediumEditor instance if
+    // we are using the shared instance.
+    if (this.reuseMediumEditorInstance) {
+      this.$root.mediumEditor.removeElements(this.$refs.element);
+    } else {
+      this.editor.destroy();
+      this.$refs.element.parentNode.removeChild(this.$refs.element);
+    }
+  },
+
+
+  watch: {
+    text: function text() {
+      if (this.text === this.$refs.element.innerHTML) {
+        // if the change is done by this same component, do not update the contents to prevent
+        // caret from resetting to the beginning of the editor
+        return;
+      }
+      this.$refs.element.innerHTML = this.text;
+    }
+  },
+
+  MediumEditor: _mediumEditor2.default
 };
 
 },{"medium-editor":2}]},{},[1]);
