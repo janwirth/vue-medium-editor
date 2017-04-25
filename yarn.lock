@@ -330,7 +330,7 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-loader@^6.2.10:
+babel-loader@^6.4.1:
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-6.4.1.tgz#0b34112d5b0748a8dcdbf51acf6f9bd42d50b8ca"
   dependencies:
@@ -2343,6 +2343,10 @@ math-expression-evaluator@^1.2.14:
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
+
+medium-editor@^5.23.0:
+  version "5.23.0"
+  resolved "https://registry.yarnpkg.com/medium-editor/-/medium-editor-5.23.0.tgz#7d16c15cdf152b95ced2a583bf07203e8539a3c6"
 
 memory-fs@^0.4.0, memory-fs@~0.4.1:
   version "0.4.1"
