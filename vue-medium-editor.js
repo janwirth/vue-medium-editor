@@ -12,7 +12,7 @@ function replaceElementWith (element, tagName) {
 export default {
   name: 'medium-editor',
   props: {
-    text: [String],
+    value: [String],
     customTag: [String],
     options: {
       type: [Object],
@@ -32,12 +32,12 @@ export default {
       editor: null
     }
   },
-  template: '<div ref="element" v-html="text"> </div>',
+  template: '<div ref="element" v-html="value"> </div>',
 
   mounted (evt) {
     // Use custom tag or div as editor element.
     this.$refs.element = replaceElementWith(this.$refs.element, this.customTag || 'div')
-    this.$refs.element.innerHTML = this.text
+    this.$refs.element.innerHTML = this.value
 
     // If we want to reuse a single MediumEditor instance.
     if (this.reuseMediumEditorInstance) {
@@ -57,6 +57,7 @@ export default {
     // bind edit operations to model
     this.$refs.element.addEventListener('DOMSubtreeModified', () => {
       if (this.$refs.element.childNodes[0]) {
+        this.$emit('input', this.$refs.element.innerHTML)
         this.$emit('edit', this.$refs.element.innerHTML)
       }
     })
@@ -74,13 +75,13 @@ export default {
   },
 
   watch: {
-    text() {
-      if (this.text === this.$refs.element.innerHTML) {
+    value(value) {
+      if (value === this.$refs.element.innerHTML) {
         // if the change is done by this same component, do not update the contents to prevent
         // caret from resetting to the beginning of the editor
         return;
       }
-      this.$refs.element.innerHTML = this.text
+      this.$refs.element.innerHTML = value;
     }
   },
 
