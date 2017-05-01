@@ -67,7 +67,7 @@ section of the MediumEditor's wiki for details.
 To generate the standalone bundle
 ```bash
 npm i --save-dev
-npm run build
+npm run prepublish
 ```
 
 ### Note on uglify

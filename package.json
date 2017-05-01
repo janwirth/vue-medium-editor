@@ -8,7 +8,7 @@
     "clean": "rm -rf dist",
     "build": "./node_modules/browserify/bin/cmd.js ./entry.js -t [ babelify --presets [ es2015 ] ] -o dist/vue-medium-editor.js",
     "min": "./node_modules/uglify-js/bin/uglifyjs dist/vue-medium-editor.js > dist/vue-medium-editor.min.js",
-    "dist": "npm run clean; mkdir dist; npm run build; npm run min"
+    "prepublish": "npm run clean && mkdir dist && npm run build && npm run min"
   },
   "repository": {
     "type": "git",
