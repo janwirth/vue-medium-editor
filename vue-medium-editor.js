@@ -67,5 +67,10 @@ export default {
       }
     }
   },
+  methods: {
+    blur () {
+      this.api.trigger('blur', new Event('blur'), this.$refs.element)
+    }
+  },
   MediumEditor
 }
