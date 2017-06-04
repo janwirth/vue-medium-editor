@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist",
-    "build": "./node_modules/browserify/bin/cmd.js ./entry.js -t [ babelify --presets [ es2015 ] ] -o dist/vue-medium-editor.js",
+    "build": "./node_modules/browserify/bin/cmd.js ./entry.js -t [ babelify --presets=es2015,babili ] -o dist/vue-medium-editor.js",
     "min": "./node_modules/uglify-js/bin/uglifyjs dist/vue-medium-editor.js > dist/vue-medium-editor.min.js",
     "prepublish": "npm run clean && mkdir dist && npm run build && npm run min"
   },
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/FranzSkuffka/vue-medium-editor#readme",
   "dependencies": {
+    "babili": "^0.1.2",
     "medium-editor": "^5.22.1"
   },
   "devDependencies": {
