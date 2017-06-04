@@ -75,6 +75,9 @@ npm run prepublish
 As VueMediumEditor uses some ES6 features,
 **we recommend using [babili](https://github.com/babel/babili) instead of uglify**.
 
+## Known Issues
+If you encounter issues with event objects, please refer to https://github.com/yabwe/medium-editor/issues/1153.
+
 ## Contributors
 This project is made possible thanks to:
 - [franzskuffka](https://github.com/FranzSkuffka)
