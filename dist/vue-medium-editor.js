@@ -1,13 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
-
-var _vueMediumEditor = require('./vue-medium-editor');
-
-var _vueMediumEditor2 = _interopRequireDefault(_vueMediumEditor);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-window.VueMediumEditor = _vueMediumEditor2.default;
+'use strict';var _vueMediumEditor=require('./vue-medium-editor'),_vueMediumEditor2=_interopRequireDefault(_vueMediumEditor);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}window.VueMediumEditor=_vueMediumEditor2.default;
 
 },{"./vue-medium-editor":4}],2:[function(require,module,exports){
 (function (process){
@@ -8029,105 +8021,6 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],4:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _mediumEditor = require('medium-editor');
-
-var _mediumEditor2 = _interopRequireDefault(_mediumEditor);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// impure helper function, replaces some element from the dom with a new one of the given tag name
-// returns the new one.
-
-function replaceElementWith(element, tagName) {
-  var newElement = document.createElement(tagName);
-  element.parentNode.replaceChild(newElement, element);
-  return newElement;
-}
-
-exports.default = {
-  name: 'medium-editor',
-  props: {
-    text: [String],
-    customTag: [String],
-    options: {
-      type: [Object],
-      default: function _default() {
-        return {};
-      }
-    },
-    reuseMediumEditorInstance: {
-      type: [Boolean],
-      default: function _default() {
-        return true;
-      }
-    }
-  },
-  data: function data() {
-    return {
-      editor: null
-    };
-  },
-  template: '<div ref="element" v-html="text"> </div>',
-
-  mounted: function mounted(evt) {
-    var _this = this;
-
-    // Use custom tag or div as editor element.
-    this.$refs.element = replaceElementWith(this.$refs.element, this.customTag || 'div');
-    this.$refs.element.innerHTML = this.text;
-
-    // If we want to reuse a single MediumEditor instance.
-    if (this.reuseMediumEditorInstance) {
-      // if Medium Editor is not instantiated yet, create a new instance
-      if (!this.$root.mediumEditor) {
-        this.$root.mediumEditor = new _mediumEditor2.default(this.$refs.element, this.options);
-
-        // otherwise, just add the element
-      } else {
-        this.$root.mediumEditor.addElements(this.$refs.element);
-      }
-      // Otherwise create a new instance of MediumEditor to use.
-    } else {
-      this.editor = new _mediumEditor2.default(this.$refs.element, this.options);
-    }
-
-    // bind edit operations to model
-    this.$refs.element.addEventListener('DOMSubtreeModified', function () {
-      if (_this.$refs.element.childNodes[0]) {
-        _this.$emit('edit', _this.$refs.element.innerHTML);
-      }
-    });
-  },
-  beforeDestroy: function beforeDestroy(evt) {
-    // Only try to remove our element from a shared MediumEditor instance if
-    // we are using the shared instance.
-    if (this.reuseMediumEditorInstance) {
-      this.$root.mediumEditor.removeElements(this.$refs.element);
-    } else {
-      this.editor.destroy();
-      this.$refs.element.parentNode.removeChild(this.$refs.element);
-    }
-  },
-
-
-  watch: {
-    text: function text() {
-      if (this.text === this.$refs.element.innerHTML) {
-        // if the change is done by this same component, do not update the contents to prevent
-        // caret from resetting to the beginning of the editor
-        return;
-      }
-      this.$refs.element.innerHTML = this.text;
-    }
-  },
-
-  MediumEditor: _mediumEditor2.default
-};
+'use strict';Object.defineProperty(exports,'__esModule',{value:!0});var _mediumEditor=require('medium-editor'),_mediumEditor2=_interopRequireDefault(_mediumEditor);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}exports.default={name:'medium-editor',props:{text:[String],customTag:[String],options:{type:[Object],default:function _default(){}},reuseMediumEditorInstance:{type:[Boolean],default:function _default(){return!0}}},data:function data(){return{editor:null}},render:function render(a){return a(this.customTag||'div',{ref:'element'})},mounted:function mounted(){var a=this;this.$refs.element.innerHTML=this.text,this.reuseMediumEditorInstance?this.$root.mediumEditor?(this.api=this.$root.mediumEditor,this.api.addElements(this.$refs.element)):this.api=this.$root.mediumEditor=new _mediumEditor2.default(this.$refs.element,this.options):this.api=new _mediumEditor2.default(this.$refs.element,this.options),this.emit=function(b){return a.$emit('edit',{event:b,api:a.api})},this.api.subscribe('editableInput',this.emit)},beforeDestroy:function beforeDestroy(){this.api.unsubscribe('editableInput',this.emit),this.reuseMediumEditorInstance?this.api.removeElements(this.$refs.element):this.api.destroy()},watch:{text:function text(a){a!==this.$refs.element.innerHTML&&(this.$refs.element.innerHTML=this.text)}},MediumEditor:_mediumEditor2.default};
 
 },{"medium-editor":2}]},{},[1]);
