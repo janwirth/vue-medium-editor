@@ -1,9 +1,86 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';var _vueMediumEditor=require('./vue-medium-editor'),_vueMediumEditor2=_interopRequireDefault(_vueMediumEditor);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}window.VueMediumEditor=_vueMediumEditor2.default;
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["vueMediumEditor"] = factory();
+	else
+		root["vueMediumEditor"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
 
-},{"./vue-medium-editor":4}],2:[function(require,module,exports){
-(function (process){
-/*global self, document, DOMException */
+/* WEBPACK VAR INJECTION */(function(process) {var __WEBPACK_AMD_DEFINE_RESULT__;/*global self, document, DOMException */
 
 /*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js */
 
@@ -393,10 +470,11 @@ if (!("classList" in document.createElement("_"))) {
     var isElectron = typeof module === 'object' && typeof process !== 'undefined' && process && process.versions && process.versions.electron;
     if (!isElectron && typeof module === 'object') {
         module.exports = factory;
-    } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+    } else if (true) {
+        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
             return factory;
-        });
+        }.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
     } else {
         root.MediumEditor = factory;
     }
@@ -7837,8 +7915,104 @@ MediumEditor.version = MediumEditor.parseVersionString.call(this, ({
     return MediumEditor;
 }()));
 
-}).call(this,require('_process'))
-},{"_process":3}],3:[function(require,module,exports){
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _mediumEditor = __webpack_require__(0);
+
+var _mediumEditor2 = _interopRequireDefault(_mediumEditor);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'medium-editor',
+  props: {
+    text: [String],
+    customTag: [String],
+    options: {
+      type: [Object],
+      default: function _default() {}
+    },
+    reuseMediumEditorInstance: {
+      type: [Boolean],
+      default: function _default() {
+        return true;
+      }
+    }
+  },
+  data: function data() {
+    return {
+      editor: null
+    };
+  },
+  render: function render(h) {
+    return h(this.customTag || 'div', { ref: 'element' });
+  },
+  mounted: function mounted(evt) {
+    var _this = this;
+
+    this.$refs.element.innerHTML = this.text;
+
+    // If we want to reuse a single MediumEditor instance.
+    if (this.reuseMediumEditorInstance) {
+      // if Medium Editor is not instantiated yet, create a new instance
+      if (!this.$root.mediumEditor) {
+        this.api = this.$root.mediumEditor = new _mediumEditor2.default(this.$refs.element, this.options);
+
+        // otherwise, just add the element
+      } else {
+        this.api = this.$root.mediumEditor;
+        this.api.addElements(this.$refs.element);
+      }
+      // Otherwise create a new instance of MediumEditor to use.
+    } else {
+      this.api = new _mediumEditor2.default(this.$refs.element, this.options);
+    }
+
+    // bind edit operations to model
+    // we need to store the handler in order to later on detach it again
+    this.emit = function (event) {
+      return _this.$emit('edit', { event: event, api: _this.api });
+    };
+    this.api.subscribe('editableInput', this.emit);
+  },
+  beforeDestroy: function beforeDestroy(evt) {
+    // Only try to remove our element from a shared MediumEditor instance if
+    // we are using the shared instance.
+    this.api.unsubscribe('editableInput', this.emit);
+    if (this.reuseMediumEditorInstance) {
+      this.api.removeElements(this.$refs.element);
+    } else {
+      this.api.destroy();
+    }
+  },
+
+  watch: {
+    text: function text(newText) {
+      // innerHTML MUST not be performed if the text did not actually change.
+      // otherwise, the caret position will be reset.
+      if (newText !== this.$refs.element.innerHTML) {
+        this.$refs.element.innerHTML = this.text;
+      }
+    }
+  },
+  MediumEditor: _mediumEditor2.default
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -8020,7 +8194,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],4:[function(require,module,exports){
-'use strict';Object.defineProperty(exports,'__esModule',{value:!0});var _mediumEditor=require('medium-editor'),_mediumEditor2=_interopRequireDefault(_mediumEditor);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}exports.default={name:'medium-editor',props:{text:[String],customTag:[String],options:{type:[Object],default:function _default(){}},reuseMediumEditorInstance:{type:[Boolean],default:function _default(){return!0}}},data:function data(){return{editor:null}},render:function render(a){return a(this.customTag||'div',{ref:'element'})},mounted:function mounted(){var a=this;this.$refs.element.innerHTML=this.text,this.reuseMediumEditorInstance?this.$root.mediumEditor?(this.api=this.$root.mediumEditor,this.api.addElements(this.$refs.element)):this.api=this.$root.mediumEditor=new _mediumEditor2.default(this.$refs.element,this.options):this.api=new _mediumEditor2.default(this.$refs.element,this.options),this.emit=function(b){return a.$emit('edit',{event:b,api:a.api})},this.api.subscribe('editableInput',this.emit)},beforeDestroy:function beforeDestroy(){this.api.unsubscribe('editableInput',this.emit),this.reuseMediumEditorInstance?this.api.removeElements(this.$refs.element):this.api.destroy()},watch:{text:function text(a){a!==this.$refs.element.innerHTML&&(this.$refs.element.innerHTML=this.text)}},MediumEditor:_mediumEditor2.default};
 
-},{"medium-editor":2}]},{},[1]);
+/***/ })
+/******/ ]);
+});
