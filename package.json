@@ -1,6 +1,6 @@
 {
   "name": "vue2-medium-editor",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A VueJS plugin for medium-editor",
   "main": "dist/vueMediumEditor.js",
   "scripts": {
