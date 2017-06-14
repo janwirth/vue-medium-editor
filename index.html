@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>VueMediumEditor</title>
+    <title>vueMediumEditor</title>
     <meta name="description" content="Medium.com WYSIWYG editor clone. Uses contenteditable API to implement a rich text solution.">
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -97,7 +97,7 @@
           <h1><span>Vue</span>Medium<span>Editor</span></h1>
           <div id="toolbar-placeholder" class="toolbar-placeholder" style="height: 74.4px;">
           </div>
-          <medium-editor :text='text' :options='options' v-on:edit='applyTextEdit' custom-tag='div'>
+          <medium-editor :text='text' :options='options' v-on:edit='processEditOperation' custom-tag='div'>
           </medium-editor>
           <code class='data'>
             {{text}}
@@ -120,7 +120,7 @@
             <div class="install-wrapper">
               
               <pre id="cdn">
-//cdn.rawgit.com/FranzSkuffka/vue-medium-editor/master/dist/vue-medium-editor.min.js"
+//cdn.rawgit.com/FranzSkuffka/vue-medium-editor/0.1.0/dist/vueMediumEditor.min.js"
 //cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css"</div>
           </div>
 
@@ -139,7 +139,7 @@
     </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.js" ></script>
 
-  <script src="https://cdn.rawgit.com/FranzSkuffka/vue-medium-editor/master/dist/vue-medium-editor.min.js" ></script>
+  <script src="https://cdn.rawgit.com/FranzSkuffka/vue-medium-editor/0.1.0/dist/vueMediumEditor.min.js" ></script>
 
   <script>
     var text =
@@ -148,21 +148,21 @@
 
 
     var usage =
-      "<medium-editor :text='text' :options='options' v-on:edit='applyTextEdit' custom-tag='div'>\n" +
-      "</medium-editor>\n\n"                                                                         +
-      "new Vue({\n"                                                                                  +
-      "  el: '#app',\n"                                                                              +
-      "  data: {\n"                                                                                  +
-      "    text: text\n"                                                                             +
-      "  },\n"                                                                                       +
-      "  components: {\n"                                                                            +
-      "    'medium-editor': VueMediumEditor\n"                                                       +
-      "  },\n"                                                                                       +
-      "  methods: {\n"                                                                               +
-      "    applyTextEdit: function (text) {\n"                                                       +
-      "      this.text = text\n"                                                                     +
-      "    }\n"                                                                                      +
-      "  }\n"                                                                                        +
+      "<medium-editor :text='text' :options='options' v-on:edit='processEditOperation' custom-tag='div'>\n" +
+      "</medium-editor>\n\n"                                                                                +
+      "new Vue({\n"                                                                                         +
+      "  el: '#app',\n"                                                                                     +
+      "  data: {\n"                                                                                         +
+      "    text: text\n"                                                                                    +
+      "  },\n"                                                                                              +
+      "  components: {\n"                                                                                   +
+      "    'medium-editor': vueMediumEditor.default\n"                                                      +
+      "  },\n"                                                                                              +
+      "  methods: {\n"                                                                                      +
+      "    processEditOperation: function (operation) {\n"                                                         +
+      "      this.text = operation.event.srcElement.innerHTML"                                                           +
+      "    }\n"                                                                                             +
+      "  }\n"                                                                                               +
       "});"
 
     options = {
@@ -177,11 +177,11 @@
         options: options
       },
       components: {
-        'medium-editor': VueMediumEditor
+        'medium-editor': vueMediumEditor.default
       },
       methods: {
-        applyTextEdit: function (text) {
-          this.text = text
+        processEditOperation: function (operation) {
+          this.text = operation.event.srcElement.innerHTML
         }
       }
     });
