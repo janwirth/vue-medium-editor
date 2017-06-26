@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <input type='checkbox' v-model='show'>
+    <input type='text' v-model='text'>
     <div v-html='text'> </div>
     <div> {{text}} </div>
     <medium-editor
@@ -8,12 +9,21 @@
       :text='text'
       v-on:edit='applyTextEdit'
       custom-tag='h1'/>
+
+    <input type='checkbox' v-model='show'>
+    <input type='text' v-model='text'>
+    <div v-html='text'> </div>
+    <div> {{text}} </div>
+    <medium-editor
+      v-if='show'
+      :text='text'
+      v-on:edit='applyTextEdit'
+      custom-tag='pre'/>
   </div>
 </template>
 
 <script>
-import MediumEditor from 'babel-loader!../../vue-medium-editor/vue-medium-editor.js'
-import Hello from './components/Hello'
+import MediumEditor from 'babel-loader!../../vue-medium-editor'
 
 const text = 'Hello World'
 
@@ -24,9 +34,10 @@ export default {
   name: 'app',
   data: () => ({text, show, tag}),
   methods: {
-    applyTextEdit (text) {
-      console.log(text)
-      this.text = text
+    applyTextEdit (ev) {
+      console.log(ev)
+      console.log(ev.event.target.innerHTML)
+      this.text = ev.event.target.innerHTML
     }
   },
   components: {MediumEditor}
