@@ -54,7 +54,6 @@ export default {
      * See: https://github.com/yabwe/medium-editor/issues/1129
      */
     options (newOptions) {
-      console.log(this.api.serialize())
       this.tearDown()
       this.createAndSubscribe()
     }
