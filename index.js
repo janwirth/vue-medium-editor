@@ -38,6 +38,10 @@ export default {
       // we need to store the handler in order to later on detach it again
       this.emit = event => this.$emit('edit', {event, api: this.api})
       this.api.subscribe('editableInput', this.emit)
+
+      this.api.subscribe('editableInput', () => console.log('editableInput'))
+      this.api.subscribe('blur', () => console.log('blur'))
+      this.api.subscribe('focus', () => console.log('focus'))
     }
   },
   watch: {
