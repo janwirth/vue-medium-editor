@@ -59,7 +59,7 @@ npm run prepublish
 ## Known Issues
 If you encounter issues with event objects, please refer to https://github.com/yabwe/medium-editor/issues/1153.
 
-## Special License for Contributors
+## Contributors
 
 - [gcoda](https://github.com/gcoda)
 - [seguer](https://github.com/seguer)
