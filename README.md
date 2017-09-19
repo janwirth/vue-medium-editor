@@ -33,7 +33,7 @@ new Vue {
 A list of available options can be found in the [documentation of MediumEditor](https://github.com/yabwe/medium-editor#core-options).
 Optionally you may use the standalone builds from `dist` which have medium-editor.js included.
 
-Make sure you include the required [CSS](https://github.com/yabwe/medium-editor/tree/master/dist/css).
+> **Make sure you include the required [CSS](https://github.com/yabwe/medium-editor/tree/master/dist/css).**
 
 ### Custom buttons and extensions
 To create extensions for the MediumEditor you will need the original MediumEditor object, which
