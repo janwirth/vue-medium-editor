@@ -160,7 +160,7 @@
       "  },\n"                                                                                              +
       "  methods: {\n"                                                                                      +
       "    processEditOperation: function (operation) {\n"                                                         +
-      "      this.text = operation.event.srcElement.innerHTML"                                                           +
+      "      this.text = operation.api.origElements.innerHTML"                                                           +
       "    }\n"                                                                                             +
       "  }\n"                                                                                               +
       "});"
@@ -181,7 +181,7 @@
       },
       methods: {
         processEditOperation: function (operation) {
-          this.text = operation.event.srcElement.innerHTML
+          this.text = operation.api.origElements.innerHTML
         }
       }
     });
