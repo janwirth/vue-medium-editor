@@ -51,11 +51,14 @@ export default {
     /**
      * There is currently no way to change the options of a medium editor
      * without destroying and re-setting up the MediumEditor object.
+     * We only tear down the editor, if the options actually changed.
      * See: https://github.com/yabwe/medium-editor/issues/1129
      */
     options (newOptions) {
-      this.tearDown()
-      this.createAndSubscribe()
+      if (newOptions !== this.options) {
+        this.tearDown()
+        this.createAndSubscribe()
+      }
     }
   },
   MediumEditor
