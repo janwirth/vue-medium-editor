@@ -54,8 +54,10 @@ export default {
      * See: https://github.com/yabwe/medium-editor/issues/1129
      */
     options (newOptions) {
-      this.tearDown()
-      this.createAndSubscribe()
+      if (!Object.is(newOptions, this.options)) {
+        this.tearDown()
+        this.createAndSubscribe()
+      }
     }
   },
   MediumEditor
