@@ -45,7 +45,8 @@ export default {
       // innerHTML MUST not be performed if the text did not actually change.
       // otherwise, the caret position will be reset.
       if (newText !== this.$refs.element.innerHTML) {
-        this.$refs.element.innerHTML = this.text
+        this.tearDown()
+        this.createAndSubscribe()
       }
     },
     /**
