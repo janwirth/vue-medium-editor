@@ -17,27 +17,45 @@
     <medium-editor
       v-if='show'
       :text='text'
+      :options='options'
       v-on:edit='applyTextEdit'
       custom-tag='pre'/>
   </div>
 </template>
 
 <script>
-import MediumEditor from 'vue2-medium-editor'
+import MediumEditor from '../../index.js'
 
 const text = 'Hello World'
 
 const show = true
 const tag = 'h1'
+const options = {
+    toolbar: {
+        buttons: ['bold', 'italic', 'underline', 'anchor']
+    },
+    anchor: {
+        /* These are the default options for anchor form,
+           if nothing is passed this is what it used */
+        customClassOption: 'alink',
+        customClassOptionText: 'Button',
+        linkValidation: false,
+        placeholderText: 'YOYOYO',
+        targetCheckbox: false,
+        targetCheckboxText: 'Open in new window'
+    }
+}
 
 export default {
   name: 'app',
-  data: () => ({text, show, tag}),
+  data: () => ({text, show, tag, options}),
   methods: {
     applyTextEdit (ev) {
       console.log(ev)
-      console.log(ev.event.target.innerHTML)
-      this.text = ev.event.target.innerHTML
+      if (ev.event.target) {
+        console.log(ev.event.target.innerHTML)
+        this.text = ev.event.target.innerHTML
+      }
     }
   },
   components: {MediumEditor}
