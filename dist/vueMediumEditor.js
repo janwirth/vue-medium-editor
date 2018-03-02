@@ -8037,6 +8037,9 @@ exports.default = {
         return _this.$emit('edit', { event: event, api: _this.api });
       };
       this.api.subscribe('editableInput', this.emit);
+
+      // emit event to give parent access to MediumEditor instance
+      this.$emit('editorCreated', this.api);
     }
   },
   watch: {
