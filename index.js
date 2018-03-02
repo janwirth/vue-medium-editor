@@ -38,6 +38,9 @@ export default {
       // we need to store the handler in order to later on detach it again
       this.emit = event => this.$emit('edit', {event, api: this.api})
       this.api.subscribe('editableInput', this.emit)
+
+      // emit event to give parent access to MediumEditor instance
+      this.$emit('editorCreated', this.api);
     }
   },
   watch: {
