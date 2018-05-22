@@ -57,7 +57,7 @@ npm run prepublish
 ```
 
 ## Known Issues
-If you encounter issues with event objects, please refer to https://github.com/yabwe/medium-editor/issues/1153.
+If you encounter issues with the link button and the events it emits, please refer to https://github.com/yabwe/medium-editor/issues/1153.
 
 ## Contributors
 
