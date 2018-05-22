@@ -8059,10 +8059,8 @@ exports.default = {
      * See: https://github.com/yabwe/medium-editor/issues/1129
      */
     options: function options(newOptions) {
-      if (newOptions !== this.options) {
-        this.tearDown();
-        this.createAndSubscribe();
-      }
+      this.tearDown();
+      this.createAndSubscribe();
     }
   },
   MediumEditor: _mediumEditor2.default
