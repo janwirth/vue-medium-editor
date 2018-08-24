@@ -1,4 +1,11 @@
-import MediumEditor from 'medium-editor'
+let MediumEditor
+
+// support for nuxt, check it's in the browser, if not disable it.
+if (process.browser) {
+  require('medium-editor/dist/css/medium-editor.min.css')
+  require('medium-editor/dist/css/themes/beagle.min.css')
+  MediumEditor = require('medium-editor')
+}
 
 export default {
   name: 'medium-editor',
@@ -26,21 +33,27 @@ export default {
   },
   methods: {
     tearDown () {
-      this.api.unsubscribe('editableInput', this.emit)
-      this.api.destroy()
+      // support for nuxt, check it's in the browser
+      if (process.browser) {
+        this.api.unsubscribe('editableInput', this.emit)
+        this.api.destroy()
+      }
     },
     createAndSubscribe () {
       this.$refs.element.innerHTML = this.text
+      
+      // support for nuxt, check it's in the browser, if not disable it.
+      if (process.browser) {
+        this.api = new MediumEditor(this.$refs.element, this.options)
 
-      this.api = new MediumEditor(this.$refs.element, this.options)
+        // bind edit operations to model
+        // we need to store the handler in order to later on detach it again
+        this.emit = event => this.$emit('edit', {event, api: this.api})
+        this.api.subscribe('editableInput', this.emit)
 
-      // bind edit operations to model
-      // we need to store the handler in order to later on detach it again
-      this.emit = event => this.$emit('edit', {event, api: this.api})
-      this.api.subscribe('editableInput', this.emit)
-
-      // emit event to give parent access to MediumEditor instance
-      this.$emit('editorCreated', this.api);
+        // emit event to give parent access to MediumEditor instance
+        this.$emit('editorCreated', this.api);
+      }
     }
   },
   watch: {
@@ -48,7 +61,10 @@ export default {
       // innerHTML MUST not be performed if the text did not actually change.
       // otherwise, the caret position will be reset.
       if (newText !== this.$refs.element.innerHTML) {
-        this.api.setContent(this.text, 0)
+        // support for nuxt, check it's in the browser, if not disable it.
+        if (process.browser) {
+          this.api.setContent(this.text, 0)
+        }
         this.$refs.element.innerHTML = this.text
       }
     },
