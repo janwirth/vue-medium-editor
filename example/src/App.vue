@@ -6,6 +6,7 @@
       :text='text'
       :options='options'
       v-on:edit='applyTextEdit'
+      @editorCreated="handleEditorCreated"
       custom-tag='pre'/>
 
     <h2>Result</h2>
@@ -23,7 +24,7 @@
     <input type='checkbox' v-model='show'>
     <h2>As Text input</h2>
     <input type='text' v-model='text'>
-    </br>
+    <br/>
   </div>
 </template>
 
@@ -70,6 +71,13 @@ export default {
         console.log(ev.event.target.innerHTML)
         this.text = ev.event.target.innerHTML
       }
+    },
+    handleEditorCreated(editor) {
+      /**
+       * write what you want here after the editor has been initalised but don't update the options here
+       * without an if condition as it'll cause an infinite loop because the watcher will recreate
+       * medium editor instane
+       */
     }
   },
   components: {MediumEditor}

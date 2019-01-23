@@ -58,9 +58,12 @@ export default {
      * We only tear down the editor, if the options actually changed.
      * See: https://github.com/yabwe/medium-editor/issues/1129
      */
-    options (newOptions) {
-      this.tearDown()
-      this.createAndSubscribe()
+    options: {
+      handler(newOptions) {
+        this.tearDown()
+        this.createAndSubscribe()
+      },
+      deep: true
     }
   },
   MediumEditor
