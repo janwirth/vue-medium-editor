@@ -1,7 +1,7 @@
 export default {
-  name: 'medium-editor-nuxt',
+  name: 'medium-editor-ssr',
   props: {
-    text: [String],
+    value: [String],
     customTag: {
       type: [String],
       default: () => 'div'
