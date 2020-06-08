@@ -30,7 +30,7 @@ export default {
       this.api.destroy()
     },
     createAndSubscribe () {
-      this.$refs.element.innerHTML = this.text
+      this.$refs.element.innerHTML = this.value
 
       this.api = new MediumEditor(this.$refs.element, this.options)
 
