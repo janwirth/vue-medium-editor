@@ -40,7 +40,7 @@ export default {
         // Enable full access to medium api.
         this.$emit('edit', {event, api: this.api})
         // Enables v-model ability
-        this.$emit('value', this.api.origElements.innerHTML)
+        this.$emit('input', this.api.origElements.innerHTML)
       }
       //subscribe to editable input event.
       this.api.subscribe('editableInput', this.emit)
