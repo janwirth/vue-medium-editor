@@ -11,7 +11,8 @@ export default {
     options: {
       type: [Object],
       default: () => {}
-    }
+    },
+    placeholder: [String]
   },
   render (h) {
     return h(this.customTag, { ref: 'element' })
@@ -32,7 +33,13 @@ export default {
     createAndSubscribe () {
       this.$refs.element.innerHTML = this.value
 
-      this.api = new MediumEditor(this.$refs.element, this.options)
+      let placeholder = this.placeholder ? {
+        placeholder: {
+          text: this.placeholder
+        }
+      } : {}
+
+      this.api = new MediumEditor(this.$refs.element, { ...placeholder, ...this.options })
 
       // bind edit operations to model
       // we need to store the handler in order to later on detach it again
