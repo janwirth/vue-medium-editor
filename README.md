@@ -1,4 +1,4 @@
-# vue2-medium-editor
+# Mothballed: vue2-medium-editor
 A [medium-editor](https://github.com/yabwe/medium-editor) component for Vue2. For Vue1 checkout branch 1.0.
 
 [![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
