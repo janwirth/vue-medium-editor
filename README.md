@@ -25,7 +25,7 @@ new Vue {
 ```
 ```vue
 <!-- index.html -->
-<medium-editor :text='myText' :options='options' custom-tag='h2' v-on:edit='applyTextEdit'>
+<medium-editor v-model='myText' :options='options' custom-tag='h2'/>
 ```
 
 > Full usage example at [github.com/FranzSkuffka/vue-medium-editor/tree/gh-pages](https://github.com/FranzSkuffka/vue-medium-editor/tree/gh-pages)

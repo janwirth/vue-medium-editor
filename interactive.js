@@ -3,7 +3,7 @@ import MediumEditor from 'medium-editor'
 export default {
   name: 'medium-editor',
   props: {
-    text: [String],
+    value: [String],
     customTag: {
       type: [String],
       default: () => 'div'
@@ -11,7 +11,8 @@ export default {
     options: {
       type: [Object],
       default: () => {}
-    }
+    },
+    placeholder: [String]
   },
   render (h) {
     return h(this.customTag, { ref: 'element' })
@@ -30,13 +31,25 @@ export default {
       this.api.destroy()
     },
     createAndSubscribe () {
-      this.$refs.element.innerHTML = this.text
+      this.$refs.element.innerHTML = this.value
 
-      this.api = new MediumEditor(this.$refs.element, this.options)
+      let placeholder = this.placeholder ? {
+        placeholder: {
+          text: this.placeholder
+        }
+      } : {}
+
+      this.api = new MediumEditor(this.$refs.element, { ...placeholder, ...this.options })
 
       // bind edit operations to model
       // we need to store the handler in order to later on detach it again
-      this.emit = event => this.$emit('edit', {event, api: this.api})
+      this.emit = (event) => {
+        // Enable full access to medium api.
+        this.$emit('edit', {event, api: this.api})
+        // Enables v-model ability
+        this.$emit('input', this.api.origElements.innerHTML)
+      }
+      //subscribe to editable input event.
       this.api.subscribe('editableInput', this.emit)
 
       // emit event to give parent access to MediumEditor instance
@@ -44,12 +57,12 @@ export default {
     }
   },
   watch: {
-    text (newText) {
+    value (newValue) {
       // innerHTML MUST not be performed if the text did not actually change.
       // otherwise, the caret position will be reset.
-      if (newText !== this.$refs.element.innerHTML) {
-        this.api.setContent(this.text, 0)
-        this.$refs.element.innerHTML = this.text
+      if (newValue !== this.$refs.element.innerHTML) {
+        this.api.setContent(this.value, 0)
+        this.$refs.element.innerHTML = this.value
       }
     },
     /**

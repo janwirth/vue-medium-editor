@@ -286,7 +286,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
   name: 'medium-editor',
   props: {
-    text: [String],
+    value: [String],
     customTag: {
       type: [String],
       default: function _default() {
@@ -323,8 +323,12 @@ exports.default = {
       // bind edit operations to model
       // we need to store the handler in order to later on detach it again
       this.emit = function (event) {
-        return _this.$emit('edit', { event: event, api: _this.api });
+        // Enable full access to medium api.
+        _this.$emit('edit', { event: event, api: _this.api });
+        // Enables v-model ability
+        _this.$emit('value', _this.api.origElements.innerHTML);
       };
+      //subscribe to editable input event.
       this.api.subscribe('editableInput', this.emit);
 
       // emit event to give parent access to MediumEditor instance
@@ -332,12 +336,12 @@ exports.default = {
     }
   },
   watch: {
-    text: function text(newText) {
+    value: function value(newValue) {
       // innerHTML MUST not be performed if the text did not actually change.
       // otherwise, the caret position will be reset.
-      if (newText !== this.$refs.element.innerHTML) {
-        this.api.setContent(this.text, 0);
-        this.$refs.element.innerHTML = this.text;
+      if (newValue !== this.$refs.element.innerHTML) {
+        this.api.setContent(this.value, 0);
+        this.$refs.element.innerHTML = this.value;
       }
     },
 
@@ -347,9 +351,13 @@ exports.default = {
      * We only tear down the editor, if the options actually changed.
      * See: https://github.com/yabwe/medium-editor/issues/1129
      */
-    options: function options(newOptions) {
-      this.tearDown();
-      this.createAndSubscribe();
+    options: {
+      handler: function handler(newOptions) {
+        this.tearDown();
+        this.createAndSubscribe();
+      },
+
+      deep: true
     }
   },
   MediumEditor: _mediumEditor2.default
@@ -366,9 +374,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  name: 'medium-editor-nuxt',
+  name: 'medium-editor-ssr',
   props: {
-    text: [String],
+    value: [String],
     customTag: {
       type: [String],
       default: function _default() {
