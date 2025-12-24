@@ -24,7 +24,7 @@ module.exports = function (options) {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: PRODUCTION ? ['es2015', 'babili'] : ['es2015']
+              presets: PRODUCTION ? ['es2015', 'minify'] : ['es2015']
             }
           }
         }
